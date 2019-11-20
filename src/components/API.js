@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { ProductConsumer } from "../context";
 
 class API extends Component {
   constructor(props) {
@@ -9,7 +8,8 @@ class API extends Component {
     this.state = {
       mediaData: [],
       profileId: "",
-      userMetrics: []
+      userMetrics: [],
+      mediaMetrics: []
     };
   }
 
@@ -36,7 +36,6 @@ class API extends Component {
         `https://graph.facebook.com/v5.0/${pageid}?fields=instagram_business_account&access_token=${accessToken}`
       )
       .then(res => {
-        //console.log(res);
         let instagram_business_account_id =
           res.data.instagram_business_account.id;
         console.log(
@@ -57,7 +56,8 @@ class API extends Component {
         let media_data = res.data.data.map(item => {
           return item.id;
         });
-        console.log(media_data);
+        console.log(("posts": media_data));
+
         this.setState(
           {
             mediaData: media_data,
@@ -65,7 +65,6 @@ class API extends Component {
           },
           () => console.log(this.state)
         );
-        //console.log(media_data[0]);
       });
   };
 
@@ -78,11 +77,29 @@ class API extends Component {
         const userMetrics = res.data;
         this.setState({ userMetrics });
         console.log(userMetrics);
+        this.getAllMedia(this.props.accessToken);
       });
   };
 
+  getAllMedia = accessToken => {
+    let feed = [];
+    for (var singleMedia of this.state.mediaData) {
+      axios
+        .get(
+          `https://graph.facebook.com/${singleMedia}?fields=media_url,caption,children,comments_count,is_comment_enabled,like_count,timestamp,username&access_token=${accessToken}`
+        )
+        .then(res => {
+          let gettingThisData = res.data;
+          feed.push(gettingThisData);
+        });
+      console.log("can i see this");
+    }
+
+    this.setState({ mediaMetrics: [...this.state.mediaMetrics, feed] });
+    console.log("from state array", this.state.mediaMetrics);
+  };
+
   render() {
-    const media_data = this.state.mediaData;
     return (
       <div>
         <button
@@ -94,17 +111,7 @@ class API extends Component {
 
         <br />
         <br />
-        <ProductConsumer>
-          {value => (
-            <button
-              onClick={() =>
-                value.setMediaState(media_data, this.state.profileId)
-              }
-            >
-              SetState
-            </button>
-          )}
-        </ProductConsumer>
+
         <br />
 
         <button
@@ -113,6 +120,10 @@ class API extends Component {
         >
           Click this to get User's metrics
         </button>
+
+        <br />
+        <br />
+        <br />
         <div>
           <img
             src={this.state.userMetrics.profile_picture_url}
@@ -129,6 +140,9 @@ class API extends Component {
         <div className="display-2 text-primary">
           {" "}
           Biography: {this.state.userMetrics.biography}
+        </div>
+        <div className="display-2 text-primary">
+          Posts: {this.state.mediaData.length}
         </div>
 
         <div className="display-2 text-primary">

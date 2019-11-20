@@ -81,5 +81,5 @@ class LandingPage extends Component {
     );
   }
 }
-//change
+
 export default LandingPage;
