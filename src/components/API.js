@@ -9,7 +9,9 @@ class API extends Component {
       mediaData: [],
       profileId: "",
       userMetrics: [],
-      mediaMetrics: []
+      mediaMetrics: [],
+      likes: "",
+      comments: ""
     };
   }
 
@@ -91,12 +93,30 @@ class API extends Component {
         .then(res => {
           let gettingThisData = res.data;
           feed.push(gettingThisData);
+          this.setState({
+            mediaMetrics: [...this.state.mediaMetrics, gettingThisData]
+          });
         });
       console.log("can i see this");
     }
 
-    this.setState({ mediaMetrics: [...this.state.mediaMetrics, feed] });
+    let like_count = this.state.mediaMetrics
+      .map(met => met.like_count)
+      .reduce((acc, curr) => acc + curr, 0);
+    this.setState({
+      likes: like_count
+    });
+
     console.log("from state array", this.state.mediaMetrics);
+    console.log("like count", like_count);
+    let comments_count = this.state.mediaMetrics
+      .map(met => met.comments_count)
+      .reduce((acc, curr) => acc + curr, 0);
+    this.setState({
+      comments: comments_count
+    });
+
+    console.log("comments count", comments_count);
   };
 
   render() {
@@ -152,6 +172,10 @@ class API extends Component {
         <div className="display-2 text-primary">
           {" "}
           Following: {this.state.userMetrics.follows_count}
+        </div>
+        <div className="display-2 text-primary"> Likes: {this.state.likes}</div>
+        <div className="display-2 text-primary">
+          Comments: {this.state.comments}
         </div>
       </div>
     );
