@@ -41,7 +41,8 @@ class Facebook extends Component {
         this.facebookLoginHandler(response);
       } else {
         this.FB.login(this.facebookLoginHandler, {
-          scope: "public_profile,instagram_basic,pages_show_list"
+          scope:
+            "public_profile,instagram_basic,pages_show_list,instagram_manage_insights"
         });
         console.log("this.FB.login");
       }

@@ -5,6 +5,9 @@
 .App-logo {
   height: 40vmin;
 }
+span {
+  color: dodgerblue;
+}
 
 .App-header {
   background-color: #282c34;

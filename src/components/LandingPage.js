@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import "../App.css";
 import Facebook from "./Facebook";
 import API from "./API";
+
 import axios from "axios";
+import { Switch, Route } from "react-router-dom";
 
 class LandingPage extends Component {
   state = {
@@ -71,7 +73,9 @@ class LandingPage extends Component {
               </div>
             )}
             {username1 && (
-              <p className="display-2">Welcome back, {username1}</p>
+              <p className="display-2">
+                Welcome back, <span>{username1}</span>
+              </p>
             )}
           </div>
         </header>
