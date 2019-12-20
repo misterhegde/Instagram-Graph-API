@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import GraphMetrics from "./GraphMetrics";
 import AudMetrics from "./AudMetrics";
-import Media from "./Media";
+import MediaURLFetch from "./Media";
 
 class API extends Component {
   constructor(props) {
@@ -198,7 +198,7 @@ class API extends Component {
           businessAccountId={this.state.instagram_business}
           accessToken={this.props.accessToken}
         />
-        <Media
+        <MediaURLFetch
           mediaDataArray={this.state.mediaData}
           accessToken={this.props.accessToken}
         />

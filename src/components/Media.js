@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 
-class Media extends Component {
+class MediaURLFetch extends Component {
   constructor(props) {
     super(props);
 
@@ -11,7 +11,6 @@ class Media extends Component {
   }
   componentDidMount() {
     this.getPictures = props => {
-      //console.log("props array received", props.mediaDataArray);
       let urls = [];
 
       for (var oneMedia of this.props.mediaDataArray) {
@@ -20,32 +19,41 @@ class Media extends Component {
             `https://graph.facebook.com/${oneMedia}?fields=media_url&access_token=${this.props.accessToken}`
           )
           .then(res => {
-            let gettingThisPicture = res.data.media_url;
+            let gettingThisPicture = res.data;
+
             urls.push(gettingThisPicture);
+            this.setState({ imageUrlArray: urls });
           });
       }
-      this.setState({ imageUrlArray: urls }, () => {
-        console.log("should be from state", this.state.pictures);
-      });
+
+      console.log("imageurlarray", this.state.imageUrlArray);
     };
   }
 
   render() {
-    if (this.state.imageUrlArray) {
-      let imageUrlArray = this.state.imageUrlArray;
-      const image = imageUrlArray.map(url => {
-        return <img src={url} alt="post" />;
-      });
-    }
     return (
       <div>
+        {this.state.imageUrlArray.length &&
+          this.state.imageUrlArray.map(url => {
+            return (
+              <ul key={url.id}>
+                <li>
+                  <img
+                    src={url.media_url}
+                    alt="post"
+                    width="400"
+                    height="400"
+                  />
+                </li>
+              </ul>
+            );
+          })}
         <button onClick={() => this.getPictures(this.props)}>
           click here to get pictures
         </button>
-        {this.image}
       </div>
     );
   }
 }
 
-export default Media;
+export default MediaURLFetch;

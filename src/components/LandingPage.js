@@ -4,7 +4,7 @@ import Facebook from "./Facebook";
 import API from "./API";
 
 import axios from "axios";
-import { Switch, Route } from "react-router-dom";
+//import { Switch, Route } from "react-router-dom";
 
 class LandingPage extends Component {
   state = {
