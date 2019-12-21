@@ -101,7 +101,7 @@ class GraphMetrics extends Component {
     return (
       <div>
         <button
-          className="btn btn-primary"
+          className="btnmaterial"
           onClick={() =>
             this.getUserProfileViewsWebsiteClickReachAndImpressoins(this.props)
           }
@@ -112,14 +112,14 @@ class GraphMetrics extends Component {
         <br />
 
         <button
-          className="btn btn-primary"
+          className="btnmaterial"
           onClick={() => this.getUserWeekpressions(this.props)}
         >
           click here to get Week Impressions
         </button>
 
         <button
-          className="btn btn-primary"
+          className="btnmaterial"
           onClick={() => this.getUserMonthImpressions(this.props)}
         >
           click here to get Month Impressions
@@ -128,14 +128,14 @@ class GraphMetrics extends Component {
         <br />
 
         <button
-          className="btn btn-primary"
+          className="btnmaterial"
           onClick={() => this.getUserWeekReach(this.props)}
         >
           click here to get Week Reach
         </button>
 
         <button
-          className="btn btn-primary"
+          className="btnmaterial"
           onClick={() => this.getUserMonthReach(this.props)}
         >
           click here to get Month Reach
@@ -144,7 +144,7 @@ class GraphMetrics extends Component {
         <br />
 
         <button
-          className="btn btn-primary"
+          className="btnmaterial"
           onClick={() => this.getUserProfileViews(this.props)}
         >
           click here to get Profile views
@@ -153,7 +153,7 @@ class GraphMetrics extends Component {
         <br />
 
         <button
-          className="btn btn-primary"
+          className="btnmaterial"
           onClick={() => this.getUserWebsiteClicks(this.props)}
         >
           click here to get Website Clicks

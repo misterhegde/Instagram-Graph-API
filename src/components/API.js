@@ -134,7 +134,7 @@ class API extends Component {
     return (
       <div>
         <button
-          className="btn btn-primary"
+          className="btnmaterial"
           onClick={() => this.getPageDetails(this.props)}
         >
           click here to get page details
@@ -146,7 +146,7 @@ class API extends Component {
         <br />
 
         <button
-          className="btn btn-primary"
+          className="btnmaterial"
           onClick={() => this.getUserMetrics(this.props)}
         >
           Click this to get User's metrics
@@ -155,40 +155,51 @@ class API extends Component {
         <br />
         <br />
         <br />
-        <div>
-          <img
-            src={this.state.userMetrics.profile_picture_url}
-            width="200"
-            height="200"
-            alt="profile display"
-          />
-        </div>
+        {this.state.userMetrics.profile_picture_url &&
+        this.state.userMetrics.name &&
+        this.state.userMetrics.biography &&
+        this.state.mediaData.length &&
+        this.state.userMetrics.followers_count &&
+        this.state.userMetrics.follows_count &&
+        this.state.likes &&
+        this.state.comments ? (
+          <div>
+            <div>
+              <img
+                className="profiledisplay"
+                src={this.state.userMetrics.profile_picture_url}
+                width="200"
+                height="200"
+                alt="profile display"
+              />
+            </div>
 
-        <div className="display-2 text-primary">
-          {" "}
-          Name: {this.state.userMetrics.name}
-        </div>
-        <div className="display-2 text-primary">
-          {" "}
-          Biography: {this.state.userMetrics.biography}
-        </div>
-        <div className="display-2 text-primary">
-          Posts: {this.state.mediaData.length}
-        </div>
+            <div className="text-info h1">
+              Name: {this.state.userMetrics.name}
+            </div>
+            <div className="text-info h1">
+              {" "}
+              Biography: {this.state.userMetrics.biography}
+            </div>
+            <div className="text-info h1">
+              Posts: {this.state.mediaData.length}
+            </div>
 
-        <div className="display-2 text-primary">
-          Followers: {this.state.userMetrics.followers_count}
-        </div>
+            <div className="text-info h1">
+              Followers: {this.state.userMetrics.followers_count}
+            </div>
 
-        <div className="display-2 text-primary">
-          {" "}
-          Following: {this.state.userMetrics.follows_count}
-        </div>
-        <div className="display-2 text-primary"> Likes: {this.state.likes}</div>
-        <div className="display-2 text-primary">
-          Comments: {this.state.comments}
-          <br />
-        </div>
+            <div className="text-info h1">
+              {" "}
+              Following: {this.state.userMetrics.follows_count}
+            </div>
+            <div className="text-info h1"> Likes: {this.state.likes}</div>
+            <div className="text-info h1">
+              Comments: {this.state.comments}
+              <br />
+            </div>
+          </div>
+        ) : null}
 
         <GraphMetrics
           businessAccountId={this.state.instagram_business}

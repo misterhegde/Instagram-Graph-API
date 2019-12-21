@@ -56,7 +56,7 @@ class AudMetrics extends Component {
     return (
       <div>
         <button
-          className="btn btn-primary"
+          className="btnmaterial"
           onClick={() =>
             this.getAudiencecityAudiencecountryAudiencegender(this.props)
           }
