@@ -89,8 +89,7 @@ class API extends Component {
           const userMetrics = res.data;
           this.setState({ userMetrics });
           console.log(userMetrics);
-          this.getAllMedia(this.props.accessToken);
-        });
+        }, this.getAllMedia(this.props.accessToken));
     };
 
     this.getAllMedia = accessToken => {

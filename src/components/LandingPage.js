@@ -68,9 +68,7 @@ class LandingPage extends Component {
               <div>
                 <p></p>
                 <Facebook onLogin={this.onFacebookLogin}>
-                  <button className="btnmaterial">
-                    Login through Facebook
-                  </button>
+                  <button className="btnmaterial">Login with Facebook</button>
                 </Facebook>
               </div>
             )}

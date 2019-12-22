@@ -37,6 +37,7 @@ span {
 .gridList {
   width: 300;
   height: 300;
+  cursor: pointer;
 }
 
 .btnmaterial {

@@ -11,7 +11,7 @@ class GraphMetrics extends Component {
   }
 
   componentDidMount() {
-    this.getUserProfileViewsWebsiteClickReachAndImpressoins = props => {
+    this.getUserProfileViewsWebsiteClickReachAndImpressions = props => {
       axios
         .get(
           `https://graph.facebook.com/${this.props.businessAccountId}/insights?metric=profile_views,website_clicks,reach,impressions,email_contacts,get_directions_clicks,phone_call_clicks,website_clicks,text_message_clicks&period=day&access_token=${this.props.accessToken}`
@@ -75,7 +75,7 @@ class GraphMetrics extends Component {
     this.getUserProfileViews = props => {
       axios
         .get(
-          `https://graph.facebook.com/${this.props.businessAccountId}/insights?metric=profile_views&period=days&access_token=${this.props.accessToken}`
+          `https://graph.facebook.com/${this.props.businessAccountId}/insights?metric=profile_views&period=day&access_token=${this.props.accessToken}`
         )
         .then(res => {
           //let graphData = res.data.data;
@@ -87,7 +87,7 @@ class GraphMetrics extends Component {
     this.getUserWebsiteClicks = props => {
       axios
         .get(
-          `https://graph.facebook.com/${this.props.businessAccountId}/insights?metric=website_clicks&period=days&access_token=${this.props.accessToken}`
+          `https://graph.facebook.com/${this.props.businessAccountId}/insights?metric=website_clicks&period=day&access_token=${this.props.accessToken}`
         )
         .then(res => {
           //let graphData = res.data.data;
@@ -103,7 +103,7 @@ class GraphMetrics extends Component {
         <button
           className="btnmaterial"
           onClick={() =>
-            this.getUserProfileViewsWebsiteClickReachAndImpressoins(this.props)
+            this.getUserProfileViewsWebsiteClickReachAndImpressions(this.props)
           }
         >
           click here to get Profile views, Website clicks, Reach, Impressions
