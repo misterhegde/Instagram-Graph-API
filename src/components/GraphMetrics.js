@@ -32,7 +32,7 @@ class GraphMetrics extends Component {
         .then(res => {
           //let graphData = res.data.data;
           //this.setState({ graphData: graphData });
-          console.log("week impresions", res);
+          console.log("week impresions", res.data.data);
         });
     };
 
@@ -44,7 +44,7 @@ class GraphMetrics extends Component {
         .then(res => {
           //let graphData = res.data.data;
           //this.setState({ graphData: graphData });
-          console.log("month impressions", res);
+          console.log("month impressions", res.data.data);
         });
     };
 
@@ -56,7 +56,7 @@ class GraphMetrics extends Component {
         .then(res => {
           //let graphData = res.data.data;
           //this.setState({ graphData: graphData });
-          console.log("week reach", res);
+          console.log("week reach", res.data.data);
         });
     };
 
@@ -68,7 +68,7 @@ class GraphMetrics extends Component {
         .then(res => {
           //let graphData = res.data.data;
           //this.setState({ graphData: graphData });
-          console.log("month reach", res);
+          console.log("month reach", res.data.data);
         });
     };
 
@@ -80,7 +80,7 @@ class GraphMetrics extends Component {
         .then(res => {
           //let graphData = res.data.data;
           //this.setState({ graphData: graphData });
-          console.log("profile views. Period: day", res);
+          console.log("profile views. Period: day", res.data.data);
         });
     };
 
@@ -92,7 +92,7 @@ class GraphMetrics extends Component {
         .then(res => {
           //let graphData = res.data.data;
           //this.setState({ graphData: graphData });
-          console.log("Website clicks. Period: day", res);
+          console.log("Website clicks. Period: day", res.data.data);
         });
     };
   }
