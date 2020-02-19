@@ -3,13 +3,18 @@ import axios from "axios";
 import GridList from "@material-ui/core/GridList";
 import GridListTile from "@material-ui/core/GridListTile";
 import GridListTileBar from "@material-ui/core/GridListTileBar";
+import IconButton from "@material-ui/core/IconButton";
+
+import "react-bootstrap";
+import AlertDialog from "./Dialog";
 
 class MediaURLFetch extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      imageUrlArray: ""
+      imageUrlArray: "",
+      open: false
     };
     this.handleClick = this.handleClick.bind(this);
   }
@@ -42,6 +47,10 @@ class MediaURLFetch extends Component {
       )
       .then(res => {
         console.log("insights from this post", res.data.data);
+        this.setState({
+          data: res.data.data,
+          open: true
+        });
       })
       .catch(function(error) {
         if (error.response) {
@@ -60,9 +69,15 @@ class MediaURLFetch extends Component {
 
   render() {
     return (
-      <div>
-        <div className="wholeroot">
-          <GridList cellHeight={180} className="gridList">
+      <React.Fragment>
+        <button
+          onClick={() => this.getPictures(this.props)}
+          className="btnmaterial"
+        >
+          Pictures
+        </button>
+        <React.Fragment className="wholeroot">
+          <GridList cellHeight={307} cols={3} spacing={8} className="gridList">
             {this.state.imageUrlArray.length &&
               this.state.imageUrlArray.map(url => {
                 return (
@@ -70,33 +85,47 @@ class MediaURLFetch extends Component {
                     <img
                       src={url.media_url}
                       alt="post"
-                      onClick={this.handleClick}
                       id={url.id}
+                      onClick={this.handleClick}
                     />
                     <GridListTileBar
-                      title={
-                        <span className="text-info">
-                          Likes: {url.like_count}
-                        </span>
+                      title={<span>Likes: {url.like_count}</span>}
+                      subtitle={<span>Comments: {url.comments_count}</span>}
+                      actionIcon={
+                        <IconButton aria-label={"info about"} className="icon">
+                          {/* <button onClick={this.handleClick} id={url.id}>
+                            insights
+                          </button> */}
+                          <AlertDialog
+                            open={this.state.open}
+                            data={
+                              this.state.data ? (
+                                this.state.data.map(item => {
+                                  return (
+                                    <React.Fragment key={url.id}>
+                                      <h1>{item.title}</h1>:
+                                      <h3>
+                                        {item.values.map(ele => {
+                                          return ele.value;
+                                        })}
+                                      </h3>
+                                    </React.Fragment>
+                                  );
+                                })
+                              ) : (
+                                <h3>loading</h3>
+                              )
+                            }
+                          />
+                        </IconButton>
                       }
-                      subtitle={
-                        <span className="text-info">
-                          Comments: {url.comments_count}
-                        </span>
-                      }
-                    />
+                    />{" "}
                   </GridListTile>
                 );
               })}
           </GridList>
-        </div>
-        <button
-          onClick={() => this.getPictures(this.props)}
-          className="btnmaterial"
-        >
-          click here to get pictures
-        </button>
-      </div>
+        </React.Fragment>
+      </React.Fragment>
     );
   }
 }

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "../App.css";
-import Facebook from "./Facebook";
-import API from "./API";
+import Facebook from "./instagram/Facebook";
+import API from "./instagram/API";
 
 import axios from "axios";
 //import { Switch, Route } from "react-router-dom";
